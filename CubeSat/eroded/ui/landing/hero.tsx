@@ -52,13 +52,15 @@ function Hero() {
             muted
             loop
           >
-            <source src="your-video-url.mp4" type="video/mp4" />
+            <source src="./overview.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 
           <div className="relative z-10">
             <div className="flex flex-row justify-between mb-4">
-              <div>cloud image</div>
+              <div className="p-6 rounded-[50%] w-20 h-20 bg-blue-200">
+                <p className="">Live</p>
+              </div>
               <div>search</div>
             </div>
             <h1 className="text-xl font-bold">Rainy Storms</h1>
