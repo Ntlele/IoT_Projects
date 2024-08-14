@@ -24,13 +24,38 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+   
 }
 
 @layer components {
   .sidebar-icon {
-    @apply relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto bg-gray-800 hover:bg-green-500 hover:text-white text-green-500 rounded-3xl hover:rounded-xl transition-all duration-300 ease-linear cursor-pointer;
+    @apply relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto bg-gray-800 hover:bg-green-500 hover:text-white text-blue-200 rounded-3xl hover:rounded-xl transition-all duration-300 ease-linear cursor-pointer;
   }
   .sidebar-tooltip {
     @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md text-white bg-gray-900 text-xs font-bold transition-all duration-100 scale-0 origin-left;
   }
+}
+
+.fir-parent{
+  height: 70%;
+}
+.fir-parent div{
+  /* border: 2px solid red; */
+  border-radius: 10px;
+  padding: 2px;
+  background: rgb(0,0,0,.7);
+  color: white;
+  width: 33%;
+}
+
+.sec-parent{
+  height: 30%;
+}
+
+.sec-parent div{
+  border-radius: 10px;
+  padding: 2px;
+  background: rgb(0,0,0,.7);
+  width: 33%;
+  color: white;
 }
