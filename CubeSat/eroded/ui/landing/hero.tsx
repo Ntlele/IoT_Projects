@@ -1,4 +1,6 @@
 import React from "react";
+import SlidingDivs from "@/app/sliding_d_d";
+import StationaryDivs from "@/app/stationary_d_d";
 
 function Hero() {
   return (
@@ -34,15 +36,11 @@ function Hero() {
       {/* Right Column */}
       <div className="flex flex-col py-4 w-full md:w-auto px-4 items-center justify-center">
         <div className="border border-black rounded-lg p-2 m-4 flex-col flex w-full md:w-[100%] h-96">
-          <div className="flex flex-row justify-between mb-2 fir-parent">
-            <div>cloud image</div>
-            <div>search</div>
-            <div>hello</div>
-          </div>
-          <div className="flex flex-row justify-between mb-2 sec-parent">
-            <div>cloud image</div>
-            <div>search</div>
-            <div>hello</div>
+          {/* Render this div only on desktop screens */}
+          <StationaryDivs />
+          {/* Render the SlidingDivs component only on small screens */}
+          <div className="md:hidden">
+            <SlidingDivs />
           </div>
         </div>
         <div className="relative border border-black rounded-lg p-2 m-4 flex-col flex w-full md:w-[100%] h-96 overflow-hidden">

@@ -59,3 +59,16 @@ body {
   width: 33%;
   color: white;
 }
+
+body{
+  background: linear-gradient(to bottom,  rgba(255, 192, 203, .5), rgba(60,93,200,.7));
+}
+
+@keyframes fade-in {  
+  0% { opacity: 0; }  
+  100% { opacity: 1; }  
+}  
+
+.animate-fade-in {  
+  animation: fade-in 1s ease-in-out;  
+}
