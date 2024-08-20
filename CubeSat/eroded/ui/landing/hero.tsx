@@ -13,11 +13,11 @@ function Hero() {
 
       {/* Right Column */}
       <div className="flex flex-col py-4 w-full md:w-auto px-4 items-center justify-center">
-        <div className="border border-black rounded-lg md:p-2 m-4 flex-col flex w-full md:w-[100%] h-96">
+        <div className="rounded-lg md:p-2 m-4 flex-col flex w-full md:w-[100%] h-96">
           {/* Render this div only on desktop screens */}
           <StationaryDivs />
           {/* Render the SlidingDivs component only on small screens */}
-          <div className="md:hidden border border-white rounded-lg w-full h-full">
+          <div className="md:hidden rounded-lg w-full h-full">
             <SlidingDivs />
           </div>
         </div>
@@ -34,16 +34,9 @@ function Hero() {
 
           <div className="relative z-10">
             <div className="flex flex-row justify-between mb-4">
-              <div className="p-6 rounded-[50%] w-20 h-20 bg-blue-200">
+              <div className="py-5 px-2 rounded-[50%] w-20 h-20 bg-slate-900 font-bold text-3xl text-blue-200">
                 <p className="">Live</p>
               </div>
-              <div>search</div>
-            </div>
-            <h1 className="text-xl font-bold">Rainy Storms</h1>
-            <hr className="my-4" />
-            <div>
-              <h1 className="text-lg">Location</h1>
-              <h1 className="text-lg">Date and Time</h1>
             </div>
           </div>
         </div>

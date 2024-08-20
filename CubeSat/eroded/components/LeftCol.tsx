@@ -13,7 +13,7 @@ const LeftCol = () => {
             <div className="font-medium">Maseru, LSO</div>
           </div>
           <h1 className="text-xl font-bold">Partly Cloudy</h1>
-          <hr className="my-4" />
+          <hr className="my-4 border border-white" />
           <div className="flex flex-row h-full">
             <div className="w-1/2 flex  justify-center items-center">
               <Image src={cloudy} alt="Cloudy" className="w-3/4 h-1/2 mt-12 md:h-3/4 md:mt-0" />
@@ -31,7 +31,7 @@ const LeftCol = () => {
             <div className="font-medium">10 000m ASL</div>
           </div>
           <h1 className="text-xl font-bold">High</h1>
-          <hr className="my-4" />
+          <hr className="my-4 border border-white" />
           <div className="flex flex-row h-full">
             <div className="w-1/2 flex  justify-center items-center">
               <Image src={humidity} alt="Humidity" className="w-3/4 h-1/2 mt-12 md:h-3/4 md:mt-0" />

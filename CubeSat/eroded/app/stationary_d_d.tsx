@@ -10,9 +10,9 @@ interface WaziupSensorData {
 }  
 
 // Sensor identifiers  
-const sensorOneName = "Temperature";  
-const sensorTwoName = "Humidity";  
-const sensorThreeName = "Pressure";  // Adjust as needed  
+const sensorOneName = "TEMP200";  
+const sensorTwoName = "HUM200";  
+const sensorThreeName = "PRES200";  // Adjust as needed  
 const devName = "CubeSat";  
 const address = "https://api.waziup.io/";  
 
@@ -87,48 +87,54 @@ const StationaryDivs: React.FC = () => {
     return (  
         <>  
             <div className="hidden md:flex flex-row justify-between mb-4 fir-parent">  
-                <div className="flex flex-col items-center p-4 bg-blue-200 rounded shadow-lg transition hover:shadow-xl">  
+                <div className="flex flex-col items-center justify-center p-4 bg-white/15 backdrop-blur-sm rounded shadow-lg transition hover:shadow-xl">  
                     {sensorOneData ? (  
                         <>  
                             <div className="text-lg font-semibold">{sensorOneData.name}</div>  
-                            <div className="text-2xl">{sensorOneData.value} {sensorOneData.unit}</div>  
+                            <div className="text-2xl">{sensorOneData.value} {sensorOneData.unit}</div>
+                            <hr className="my-2 border border-white/45 w-[80%]" />
+                            <p className="text-sm text-center">{new Date(sensorOneData.timestamp).toLocaleString()}</p>
                         </>  
                     ) : <div className="text-gray-500">Loading...</div>}  
                 </div>  
-                <div className="flex flex-col items-center p-4 bg-green-200 rounded shadow-lg transition hover:shadow-xl">  
+                <div className="flex flex-col items-center justify-center p-2 bg-white/15 backdrop-blur-sm rounded shadow-lg transition hover:shadow-xl">  
                     {sensorTwoData ? (  
                         <>  
                             <div className="text-lg font-semibold">{sensorTwoData.name}</div>  
-                            <div className="text-2xl">{sensorTwoData.value} {sensorTwoData.unit}</div>  
+                            <div className="text-2xl">{sensorTwoData.value} {sensorTwoData.unit}</div>
+                            <hr className="my-2 border border-white/45 w-[80%]" />
+                            <p className="text-sm text-center">{new Date(sensorTwoData.timestamp).toLocaleString()}</p>
                         </>  
                     ) : <div className="text-gray-500">Loading...</div>}  
                 </div>  
-                <div className="flex flex-col items-center p-4 bg-yellow-200 rounded shadow-lg transition hover:shadow-xl">  
+                <div className="flex flex-col items-center justify-center p-4 bg-white/15 backdrop-blur-sm rounded shadow-lg transition hover:shadow-xl">  
                     {sensorThreeData ? (  
                         <>  
                             <div className="text-lg font-semibold">{sensorThreeData.name}</div>  
-                            <div className="text-2xl">{sensorThreeData.value} {sensorThreeData.unit}</div>  
+                            <div className="text-2xl">{sensorThreeData.value} {sensorThreeData.unit}</div>
+                            <hr className="my-4 border border-white/45 w-[80%]" />
+                            <p className="text-sm text-center">{new Date(sensorThreeData.timestamp).toLocaleString()}</p>
                         </>  
                     ) : <div className="text-gray-500">Loading...</div>}  
                 </div>  
             </div>  
 
             <div className="hidden md:flex flex-row justify-between mb-4 sec-parent">  
-                <div className="flex flex-col items-center p-2 bg-blue-100 rounded shadow-sm">  
+                <div className="flex flex-col items-center  p-2 bg-gradient-to-b from-slate-100/25 to-slate-900/15 backdrop-blur-lg rounded shadow-lg">  
                     {sensorOneData ? (  
                         <>  
                             <div className="text-sm">{new Date(sensorOneData.timestamp).toLocaleString()}</div>  
                         </>  
                     ) : <div className="text-gray-500">Loading...</div>}  
                 </div>  
-                <div className="flex flex-col items-center p-2 bg-green-100 rounded shadow-sm">  
+                <div className="flex flex-col items-center p-2 bg-gradient-to-b from-slate-100/25 to-slate-900/15 backdrop-blur-lg rounded shadow-lg">  
                     {sensorTwoData ? (  
                         <>  
                             <div className="text-sm">{new Date(sensorTwoData.timestamp).toLocaleString()}</div>  
                         </>  
                     ) : <div className="text-gray-500">Loading...</div>}  
                 </div>  
-                <div className="flex flex-col items-center p-2 bg-yellow-100 rounded shadow-sm">  
+                <div className="flex flex-col items-center p-2 bg-gradient-to-b from-slate-100/25 to-slate-900/15 backdrop-blur-lg rounded shadow-lg">  
                     {sensorThreeData ? (  
                         <>  
                             <div className="text-sm">{new Date(sensorThreeData.timestamp).toLocaleString()}</div>  
