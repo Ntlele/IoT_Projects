@@ -35,11 +35,11 @@ function Hero() {
 
       {/* Right Column */}
       <div className="flex flex-col py-4 w-full md:w-auto px-4 items-center justify-center">
-        <div className="border border-black rounded-lg p-2 m-4 flex-col flex w-full md:w-[100%] h-96">
+        <div className="border border-black rounded-lg md:p-2 m-4 flex-col flex w-full md:w-[100%] h-96">
           {/* Render this div only on desktop screens */}
           <StationaryDivs />
           {/* Render the SlidingDivs component only on small screens */}
-          <div className="md:hidden">
+          <div className="md:hidden border border-white rounded-lg w-full h-full">
             <SlidingDivs />
           </div>
         </div>

@@ -11,46 +11,46 @@ interface WaziupWeatherData {
     timestamp: string;
 }
 
-const sensName = "Humidity";
 const devName = "CubeSat";
-const topic = `api/v2/devices/${devName}/sensors/${sensName}`;
+const sensors = ["Humidity", "Temperature", "Pressure"];
 const address = "https://api.waziup.io/";
 
 const SlidingSlideshow: React.FC = () => {  
     const [currentSlide, setCurrentSlide] = useState<number>(0);  
-    const [weatherData, setWeatherData] = useState<WaziupWeatherData | null>(null);  
+    const [weatherData, setWeatherData] = useState<WaziupWeatherData[]>([]);  
 
     // Fetch weather data from Waziup
     useEffect(() => {  
         const fetchWeather = async () => {  
             try {  
-                const response = await fetch(`${address}${topic}`, {
-                    method: "GET",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                });  
+                const dataPromises = sensors.map(async (sensor) => {
+                    const topic = `api/v2/devices/${devName}/sensors/${sensor}`;
+                    const response = await fetch(`${address}${topic}`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });  
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
 
-                const data = await response.json();  
+                    const data = await response.json();  
 
-                // Log the fetched data for debugging
-                console.log("Fetched data:", data);
+                    // Process the fetched data
+                    return {
+                        id: data.id,
+                        name: data.name,
+                        value: data.value.value,
+                        unit: data.unit,
+                        dateReceived: data.value.date_received,
+                        timestamp: data.value.timestamp,
+                    };
+                });
 
-                // Process the fetched data
-                const processedData = {
-                    id: data.id,
-                    name: data.name,
-                    value: data.value.value,
-                    unit: data.unit,
-                    dateReceived: data.value.date_received,
-                    timestamp: data.value.timestamp,
-                };
-
-                setWeatherData(processedData);  
+                const fetchedData = await Promise.all(dataPromises);
+                setWeatherData(fetchedData);
             } catch (error) {  
                 console.error("Error fetching weather data:", error);  
             }  
@@ -60,47 +60,49 @@ const SlidingSlideshow: React.FC = () => {
 
     // Function to go to the next slide  
     const nextSlide = (): void => {  
-        setCurrentSlide((prev) => (prev + 1) % 1);  // Only one slide, so loop over itself
+        setCurrentSlide((prev) => (prev + 1) % weatherData.length);  
     };  
 
-    // Auto-advance to the next slide every 3 seconds (can be removed if unnecessary)
+    // Auto-advance to the next slide every 3 seconds
     useEffect(() => {  
-        if (weatherData) {
+        if (weatherData.length > 0) {
             const interval = setInterval(nextSlide, 3000);  
             return () => clearInterval(interval);  
         }
     }, [weatherData]);  
 
     return (  
-        <div className="flex flex-col items-center">  
-            <div className={`flex overflow-hidden transition-all duration-500 w-72 h-72 relative`}>  
-                {weatherData ? (
-                    <div  
-                        key={weatherData.id}  
-                        className={`
-                            w-72
-                            h-72
-                            flex
-                            flex-col
-                            items-center
-                            justify-center
-                            text-white
-                            text-2xl
-                            bg-blue-400
-                            absolute
-                            transition-all
-                            duration-500
-                            ease-in-out
-                            translate-x-0 opacity-100`}  
-                    >  
-                        <div className="text-xl font-bold">{weatherData.name}</div>
-                        <div className="text-lg">{weatherData.id}</div>
-                        <div className="text-5xl mt-4">{weatherData.value}{weatherData.unit}</div>
-                        <div className="mt-2 text-sm">Received: {new Date(weatherData.dateReceived).toLocaleString()}</div>
-                        <div className="mt-2 text-sm">Measured: {new Date(weatherData.timestamp).toLocaleString()}</div>
-                    </div>  
+        <div className="h-full flex flex-col items-center">  
+            <div className={`flex overflow-hidden transition-all duration-500 w-full h-full relative`}>  
+                {weatherData.length > 0 ? (
+                    weatherData.map((data, index) => (
+                        <div  
+                            key={data.id}  
+                            className={`
+                                w-80
+                                h-80
+                                flex
+                                flex-col
+                                items-center
+                                justify-center
+                                text-white
+                                text-2xl
+                                bg-blue-400
+                                absolute
+                                transition-all
+                                duration-500
+                                ease-in-out
+                                ${index === currentSlide ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}  
+                        >  
+                            <div className="text-xl font-bold">{data.name}</div>
+                            <div className="text-lg">{data.id}</div>
+                            <div className="text-5xl mt-4">{data.value}{data.unit}</div>
+                            <div className="mt-2 text-sm">Received: {new Date(data.dateReceived).toLocaleString()}</div>
+                            <div className="mt-2 text-sm">Measured: {new Date(data.timestamp).toLocaleString()}</div>
+                        </div>
+                    ))
                 ) : (
-                    <div className="w-72 h-72 flex items-center justify-center text-white text-2xl bg-red-400">
+                    <div className="w-full rounded-md flex items-center justify-center text-white text-2xl bg-red-400">
                         No data available
                     </div>
                 )}
