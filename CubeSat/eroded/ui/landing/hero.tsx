@@ -1,6 +1,6 @@
 import React from "react";
-import SlidingDivs from "@/app/sliding_d_d";
-import StationaryDivs from "@/app/stationary_d_d";
+import SlidingDivs from "@/components/sliding_d_d";
+import StationaryDivs from "@/components/stationary_d_d";
 import LeftCol from "@/components/LeftCol";
 
 function Hero() {
