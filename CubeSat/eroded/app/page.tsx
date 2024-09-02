@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex md:h-screen">
+    <main className="flex h-full">
       <div className=""><NavBar/></div>
       <Hero/>
     </main>
