@@ -18,8 +18,8 @@ const SideBarIcon: React.FC<SideBarIconProps> = ({ icon, text }) => (
 
 const NavBar: React.FC = () => {
   return (
-    <div className='px-4 py-1 hidden md:flex'>
-        <aside className='mr-3 flex top-0 left-0 w-16 m-0 flex-col text-white shadow-lg justify-between md:h-[921px] relative rounded-lg bg-transparent'>
+    <div className='px-4 py-1 hidden md:flex z-20'>
+        <aside className='mr-3 flex top-0 left-0 w-16 m-0 flex-col text-white shadow-lg justify-between md:h-[921px] relative rounded-lg bg-transparent z-20'>
           <div className='flex flex-col'>
             <SideBarIcon icon={<FaFire />} text={'Home'} />
             <hr className='my-4 border-t border-gray-300' />
